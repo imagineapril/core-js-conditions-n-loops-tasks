@@ -180,8 +180,58 @@ function convertToRomanNumerals(num) {
  *  '10,5'    => 'one zero point five'
  *  '1950.2'  => 'one nine five zero point two'
  */
-function convertNumberToString(/* numberStr */) {
-  throw new Error('Not implemented');
+function convertNumberToString(numberStr) {
+  let strNumber = '';
+  let resultStrNumber = '';
+  for (let i = 0; i < numberStr.length; i += 1) {
+    switch (numberStr[i]) {
+      case '-':
+        strNumber += 'minus ';
+        break;
+      case '0':
+        strNumber += 'zero ';
+        break;
+      case '1':
+        strNumber += 'one ';
+        break;
+      case '2':
+        strNumber += 'two ';
+        break;
+      case '3':
+        strNumber += 'three ';
+        break;
+      case '4':
+        strNumber += 'four ';
+        break;
+      case '5':
+        strNumber += 'five ';
+        break;
+      case '6':
+        strNumber += 'six ';
+        break;
+      case '7':
+        strNumber += 'seven ';
+        break;
+      case '8':
+        strNumber += 'eight ';
+        break;
+      case '9':
+        strNumber += 'nine ';
+        break;
+      case '.':
+        strNumber += 'point ';
+        break;
+      case ',':
+        strNumber += 'point ';
+        break;
+      default:
+        break;
+    }
+  }
+  for (let i = 0; i < strNumber.length - 1; i += 1) {
+    resultStrNumber += strNumber[i];
+  }
+  return resultStrNumber;
 }
 
 /**
@@ -259,8 +309,20 @@ function isContainNumber(num, digit) {
  *  [2, 3, 9, 5] => 2       => 2 + 3 === 5 then balance element is 9 and its index = 2
  *  [1, 2, 3, 4, 5] => -1   => no balance element
  */
-function getBalanceIndex(/* arr */) {
-  throw new Error('Not implemented');
+function getBalanceIndex(arr) {
+  if (arr.length <= 2) return -1;
+  for (let i = 1; i < arr.length; i += 1) {
+    let leftSum = 0;
+    let rightSum = 0;
+    for (let j = 0; j < i - 1; j += 1) {
+      leftSum += arr[j];
+    }
+    for (let j = i; j < arr.length; j += 1) {
+      rightSum += arr[j];
+    }
+    if (leftSum === rightSum) return i - 1;
+  }
+  return -1;
 }
 
 /**
